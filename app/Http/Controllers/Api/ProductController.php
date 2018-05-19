@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()
+        $products = Product::latest()->withCount('categories')
             ->paginate(20);
 
         return ProductResource::collection($products);
@@ -31,6 +31,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $product->categories = $product->categories()->get();
         return new ProductResource($product);
     }
 

@@ -13,7 +13,7 @@ class CreateCategoryProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_products', function (Blueprint $table) {
+        Schema::create('category_product', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('product_id');

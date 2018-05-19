@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()
+        $categories = Category::latest()->withCount('products')
             ->paginate(20);
 
         return CategoryResource::collection($categories); 
@@ -31,6 +31,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $category->products = $category->products()->latest()->paginate(20);
         return new CategoryResource($category);
     }
 
