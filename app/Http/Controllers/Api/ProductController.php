@@ -32,6 +32,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->categories = $product->categories()->get();
+        $product->specs = $product->specs()->get();
         return new ProductResource($product);
     }
 

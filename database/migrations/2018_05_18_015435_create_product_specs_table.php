@@ -13,7 +13,7 @@ class CreateProductSpecsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_specs', function (Blueprint $table) {
+        Schema::create('product_spec', function (Blueprint $table) {
             $table->increments('id');
             $table->string('value');
             $table->unsignedInteger('spec_id');

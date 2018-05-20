@@ -14,4 +14,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Category');
     }
+
+    public function specs()
+    {
+        return $this->belongsToMany('App\Spec')->withPivot('value');
+    }
 }
