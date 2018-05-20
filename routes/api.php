@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::resource('cart', 'Api\CartController')
     ->only(['show', 'update', 'destroy']);
 
@@ -27,15 +23,14 @@ Route::resource('products', 'Api\ProductController')
     ->only(['index', 'show']);
 
 Route::group([
-
     'middleware' => 'api',
     'prefix' => 'auth'
-
 ], function ($router) {
 
+    Route::post('register', 'Api\AuthController@register');
     Route::post('login', 'Api\AuthController@login');
     Route::post('logout', 'Api\AuthController@logout');
-    Route::post('refresh', 'Api\AuthController@refresh');
-    Route::post('me', 'Api\AuthController@me');
+    Route::get('refresh', 'Api\AuthController@refresh');
+    Route::get('user', 'Api\AuthController@me');
 
 });

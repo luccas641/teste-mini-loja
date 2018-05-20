@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class AuthController extends Controller
 {
@@ -15,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -31,7 +32,10 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        return response([
+            'status' => "success"
+        ])
+        ->header('Authorization', $token);
     }
 
     /**
@@ -41,7 +45,12 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api')->user());
+        $user = User::find(Auth::user()->id);
+
+        return response([
+                'status' => 'success',
+                'data' => $user
+            ]);
     }
 
     /**
@@ -63,7 +72,12 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        $token = auth('api')->refresh();
+
+        return response([
+            'status' => "success"
+        ])
+        ->header('Authorization', $token);;
     }
 
     /**
@@ -81,4 +95,46 @@ class AuthController extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
+    /**
+     * Register user
+     *
+     * @param  Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function register(Request $request)
+    {
+        $user = $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'code' => 'required|string',
+            'address' => 'required|string',
+            'suburb' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'phone' => 'required|string',
+        ]);
+        
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'code' => $request->input('code'),
+            'address' => $request->input('address'),
+            'suburb' => $request->input('suburb'),
+            'city' => $request->input('city'),
+            'state' => $request->input('state'),
+            'phone' => $request->input('phone')
+        ]);
+        
+        $user->save();
+        return response([
+            'status' => 'success',
+            'data' => $user
+        ], 200);
+    }
+
 }
