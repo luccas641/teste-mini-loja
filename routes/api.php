@@ -17,9 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource('cart', 'Api\CartController')
+    ->only(['show', 'update', 'destroy']);
 
 Route::resource('categories', 'Api\CategoryController')
     ->only(['index', 'show']);
 
 Route::resource('products', 'Api\ProductController')
     ->only(['index', 'show']);
+    
