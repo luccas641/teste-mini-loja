@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "@websanova/vue-auth": "^2.21.11-beta",
+        "laravel-vue-pagination": "^1.2.0",
         "vue-axios": "^2.1.1",
-        "vue-router": "^3.0.1"
+        "vue-router": "^3.0.1",
+        "vue-toasted": "^1.1.24"
     }
 }

@@ -45,9 +45,9 @@ class Cart implements Arrayable
     */
     public function add ($id, $name, $price, $quantity) {
         $cartItem = new CartItem($id, $name, $price, $quantity);
-        if ($this->content->has($id)) {
+        /*if ($this->content->has($id)) {
             $cartItem->quantity += $this->content->get($id)->quantity;
-        }
+        }*/
         $this->content->put($id, $cartItem);
     }
 
@@ -91,7 +91,7 @@ class Cart implements Arrayable
     {
         return [
             'id' => $this->id,
-            'content' => $this->content,
+            'content' => $this->content->toArray(),
         ];
     }
 }

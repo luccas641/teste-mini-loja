@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $category->products = $category->products()->latest()->paginate(20);
+        $category->products = $category->products()->latest()->paginate(6);
         return new CategoryResource($category);
     }
 

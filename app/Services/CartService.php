@@ -50,8 +50,14 @@ class CartService
         {
             $cart = new Cart($cartId);
         }
+
+        if($quantity==0) {
+            $cart->remove($product->id);
+        } else {
+            $cart->add($product->id, $product->name, $product->price, $quantity);
+        }
     
-        $cart->add($product->id, $product->name, $product->price, $quantity);
+        
         $this->cartRepo->createOrUpdate($cart->id, $cart);
         
         return $cart;

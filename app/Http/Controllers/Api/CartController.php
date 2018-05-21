@@ -34,7 +34,10 @@ class CartController extends Controller
      */
     public function show($id)
     { 
-        return $this->cartService->get($id);
+        return [
+            "status" => "success",
+            "data" => $this->cartService->get($id)->content->values()
+        ];
     }
 
     /**
