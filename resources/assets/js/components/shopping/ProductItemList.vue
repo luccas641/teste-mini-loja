@@ -1,7 +1,7 @@
 <template>
     <router-link :to="{ name: 'productDetail', params: { id: product.id }}" class="col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail" >
-            <img src="http://placehold.it/700x350&text=1" class="img-responsive">
+            <img :src="product.image" class="img-responsive">
             <div class="caption">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-6 price">

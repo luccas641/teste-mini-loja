@@ -52750,10 +52750,7 @@ var render = function() {
                           _c("img", {
                             staticClass: "media-object",
                             staticStyle: { width: "72px", height: "72px" },
-                            attrs: {
-                              src:
-                                "http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
-                            }
+                            attrs: { src: product.image }
                           })
                         ]
                       ),
@@ -53120,7 +53117,7 @@ var render = function() {
       _c("div", { staticClass: "thumbnail" }, [
         _c("img", {
           staticClass: "img-responsive",
-          attrs: { src: "http://placehold.it/700x350&text=1" }
+          attrs: { src: _vm.product.image }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "caption" }, [
@@ -54586,7 +54583,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -54657,7 +54653,12 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-xs-5 item-photo" }, [
+            _c("img", {
+              staticStyle: { "max-width": "100%" },
+              attrs: { src: _vm.product.image }
+            })
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -54668,7 +54669,7 @@ var render = function() {
             [
               _c("h3", [_vm._v(_vm._s(_vm.product.name))]),
               _vm._v(" "),
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c("h3", { staticStyle: { "margin-top": "0px" } }, [
                 _vm._v(_vm._s(_vm._f("monetize")(_vm.product.price)))
@@ -54681,7 +54682,7 @@ var render = function() {
                   staticStyle: { "padding-bottom": "20px" }
                 },
                 [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("div", [
                     _c(
@@ -54782,20 +54783,6 @@ var render = function() {
     : _vm._e()
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-5 item-photo" }, [
-      _c("img", {
-        staticStyle: { "max-width": "100%" },
-        attrs: {
-          src:
-            "https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg"
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -55876,11 +55863,7 @@ var render = function() {
                             [
                               _c("img", {
                                 staticClass: "media-object",
-                                staticStyle: { width: "72px", height: "72px" },
-                                attrs: {
-                                  src:
-                                    "http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
-                                }
+                                attrs: { src: product.image }
                               })
                             ]
                           ),

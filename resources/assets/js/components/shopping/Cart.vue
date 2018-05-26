@@ -17,7 +17,7 @@
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <router-link :to="{name: 'productDetail', params: {id: product.id}}" class="thumbnail pull-left">
-                                    <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;">
+                                    <img class="media-object" :src="product.image" style="width: 72px; height: 72px;">
                                 </router-link>
                                 <div class="media-body">
                                     <h4 class="media-heading">

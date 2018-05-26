@@ -7,8 +7,7 @@
         </div>
         <div class="row">
             <div class="col-xs-5 item-photo">
-                <img style="max-width:100%;" src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg"
-                />
+                <img style="max-width:100%;" :src="product.image"/>
             </div>
             <div class="col-xs-7" style="border:0px solid gray">
                 <!-- Datos del vendedor y titulo del producto -->
