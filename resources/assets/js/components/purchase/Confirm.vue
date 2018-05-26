@@ -79,13 +79,14 @@
         },
         methods: {
             confirm () {
-                console.log('confirm')
                 this.axios.post(`orders`, {
                     cart: this.cartId,
                     shipping: this.shipping
                 })
                 .then((response) => {
-                    this.category = response.data
+                    this.$router.push({
+                        name: 'success'
+                    })
                 })
                 .catch((err) => {
                     this.error = true;

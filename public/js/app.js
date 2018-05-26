@@ -26490,10 +26490,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     }, {
         path: '/success',
         name: 'success',
-        component: __WEBPACK_IMPORTED_MODULE_17__components_purchase_Success___default.a,
-        meta: {
-            auth: true
-        }
+        component: __WEBPACK_IMPORTED_MODULE_17__components_purchase_Success___default.a
     }, {
         path: '/confirm',
         name: 'confirm',
@@ -53589,12 +53586,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         confirm: function confirm() {
             var _this = this;
 
-            console.log('confirm');
             this.axios.post('orders', {
                 cart: this.cartId,
                 shipping: this.shipping
             }).then(function (response) {
-                _this.category = response.data;
+                _this.$router.push({
+                    name: 'success'
+                });
             }).catch(function (err) {
                 _this.error = true;
                 _this.errors = response.data.errors;

@@ -44,6 +44,7 @@ class OrderService
         foreach($cart->content as $item) {
             $order->products()->attach($item->id, ['price' => $item->price, 'quantity' => $item->quantity]);
         }
+        $this->cartService->destroy($cart->id);
         return $order;
     }
 }

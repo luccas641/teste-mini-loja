@@ -94,9 +94,6 @@ const router = new VueRouter({
             path: '/success',
             name: 'success',
             component: Success,
-            meta: {
-                auth: true
-            }
         },
         {
             path: '/confirm',
