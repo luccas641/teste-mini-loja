@@ -32,7 +32,7 @@ class CartController extends Controller
      * @param int $id
 
      */
-    public function index($id)
+    public function index()
     { 
         return [
             "status" => "success",

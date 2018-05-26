@@ -25,7 +25,7 @@ class CartService
     * @param int $cartId
     * @return string
     */
-    public function request($cartId)
+    public function request()
     {
         $cart = $this->cartRepo->request();
 

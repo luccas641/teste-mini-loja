@@ -50,6 +50,23 @@ class Cart implements Arrayable
         }*/
         $this->content->put($id, $cartItem);
     }
+    /**
+    * Get cart total.
+    *
+    * If an item is already in the cart then update quantity.
+    * 
+    * @param int $id  
+    * @param stirng $name  
+    * @param float $price
+    * @param int $quantity 
+    */
+    public function getTotal () {
+        $total = 0;
+        foreach($this->content as $item) {
+            $total += $item->price * $item->quantity;
+        }
+        return $total;
+    }
 
     /**
      * Remove the item with id from the cart.

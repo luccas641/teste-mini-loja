@@ -19,6 +19,11 @@
 
 <script>
     export default {
+        props: {
+            redirect: {
+                default: '/customer'
+            }
+        },
         data(){
             return {
                 email: null,
@@ -41,7 +46,7 @@
                         alert(resp.response.data.msg)
                     },
                     rememberMe: true,
-                    redirect: '/customer',
+                    redirect: this.redirect,
                     fetchUser: true,
                 });             
             },

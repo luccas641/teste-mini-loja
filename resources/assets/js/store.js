@@ -1,4 +1,10 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
+
+Vue.use(Vuex)
 const store = new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     cartId: null,
     user: null,
@@ -7,13 +13,15 @@ const store = new Vuex.Store({
     setUser (store, user) {
         store.user = user
     },
-    setCart (store, cart) {
+    setCart (store, cartId) {
         store.cartId = cartId
     },
   },
   actions: {
     requestCart ({commit}) {
-        
+      return Vue.axios.get(`carts`).then((response) => {
+         commit('setCart', response.data.cartId) 
+      })
     },
     setCart ({commit}, cart) {
         commit('setCart', cart)
@@ -29,4 +37,4 @@ const store = new Vuex.Store({
   }
 })
 
-module.exports = store;
+export default store

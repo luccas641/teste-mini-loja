@@ -70,12 +70,18 @@
 
 <script>
     
+    import {mapGetters} from 'vuex'
     export default {
         data() {
             return {
                 product: null,
                 quantity: 1
             };
+        },
+        computed: {
+            ...mapGetters([
+                'cartId'
+            ]),
         },
         created() {
             this.axios.get(`products/${this.$route.params.id}`).then((response) => {
@@ -90,7 +96,7 @@
                 this.quantity++
             },
             addToCart () {
-                this.axios.put(`cart/1`, {
+                this.axios.put(`carts/${this.cartId}`, {
                     product: this.product.id,
                     quantity: this.quantity
                 }).then(() => {

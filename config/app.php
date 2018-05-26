@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\CartServiceServiceProvider::class,
         App\Providers\CartRepositoryServiceProvider::class,
+        App\Providers\OrderServiceServiceProvider::class,
 
     ],
 

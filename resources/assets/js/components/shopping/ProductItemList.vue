@@ -18,11 +18,17 @@
     </router-link>
 </template>
 <script> 
+    import {mapGetters} from 'vuex'
     export default {
         props: ['product'],
+        computed: {
+            ...mapGetters([
+                'cartId'
+            ]),
+        },
         methods: {
             addToCart (id) {
-                this.axios.put(`cart/1`, {
+                this.axios.put(`carts/${this.cartId}`, {
                     product: id,
                     quantity: 1
                 }).then(() => {

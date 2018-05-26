@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('cart', 'Api\CartController')
-    ->only(['show', 'update', 'destroy']);
+Route::resource('carts', 'Api\CartController')
+    ->only(['index', 'show', 'update', 'destroy']);
 
 Route::resource('categories', 'Api\CategoryController')
     ->only(['index', 'show']);
@@ -24,6 +24,13 @@ Route::resource('products', 'Api\ProductController')
 
 Route::resource('specs', 'Api\SpecController')
 ->only(['index', 'show']);
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::resource('orders', 'Api\OrderController')
+    ->only(['index', 'show', 'store']);
+});
 
 Route::group([
     'middleware' => 'api',

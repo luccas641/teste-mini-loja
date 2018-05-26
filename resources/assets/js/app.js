@@ -1,32 +1,32 @@
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
-let VueRouter = require('vue-router').default;
-let axios = require('axios');
-let Toasted = require('vue-toasted').default;
-let VueAxios = require('vue-axios');
-let Vuex = require('vuex');
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import axios from 'axios'
+import Toasted from 'vue-toasted'
+import VueAxios from 'vue-axios'
+import Vuex from 'vuex'
 
-let App = require('./App.vue');
-let Cart = require('./components/shopping/Cart.vue');
-let Category = require('./components/shopping/Category.vue');
-let Categories = require('./components/shopping/Categories.vue');
-let Confirm = require('./components/purchase/Confirm.vue');
-let Customer = require('./components/user/Customer.vue');
-let Home = require('./components/shopping/Home.vue');
-let Login = require('./components/user/Login.vue');
-let ProductDetail = require('./components/shopping/ProductDetail.vue');
-let Register = require('./components/user/Register.vue');
-let Search = require('./components/shopping/Search.vue');
-let Success = require('./components/purchase/Success.vue');
+import App from './App'
+import Cart from './components/shopping/Cart'
+import Category from './components/shopping/Category'
+import Categories from './components/shopping/Categories'
+import Confirm from './components/purchase/Confirm'
+import Customer from './components/user/Customer'
+import Home from './components/shopping/Home'
+import Login from './components/user/Login'
+import ProductDetail from './components/shopping/ProductDetail'
+import Register from './components/user/Register'
+import Search from './components/shopping/Search'
+import Success from './components/purchase/Success'
+import PurchaseDetails from './components/purchase/Details'
 
-let Store = require('./store');
+import Store from './store'
 
-Vue.use(Vuex)
 Vue.use(Toasted)
-Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
-
+Vue.use(VueRouter)
+Vue.use(VueAxios, axios)
+window.Vue = Vue
 axios.defaults.baseURL = 'http://localhost/api';
 
 const router = new VueRouter({
@@ -40,9 +40,6 @@ const router = new VueRouter({
             path: '/register',
             name: 'register',
             component: Register,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/login',
@@ -61,63 +58,54 @@ const router = new VueRouter({
             }
         },
         {
+            path: '/purchaseDetail/:id',
+            name: 'purchaseDetail',
+            component: PurchaseDetails,
+            meta: {
+                auth: true
+            }
+        },
+        {
             path: '/cart',
             name: 'cart',
             component: Cart,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/products/:id',
             name: 'productDetail',
             component: ProductDetail,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/categories/:id',
             name: 'category',
             component: Category,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/categories',
             name: 'categories',
             component: Categories,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/search',
             name: 'search',
             component: Search,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/success',
             name: 'success',
             component: Success,
             meta: {
-                auth: false
+                auth: true
             }
         },
         {
             path: '/confirm',
             name: 'confirm',
             component: Confirm,
-            meta: {
-                auth: false
-            }
+            
         }
     ]
-});
+})
 
 Vue.router = router
 
@@ -126,7 +114,7 @@ Vue.use(require('@websanova/vue-auth'), {
   http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
 })
-Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.component('pagination', require('laravel-vue-pagination'))
 Vue.filter('monetize', function (value) {
     value = String(parseFloat(value).toFixed(2))
     value = value.replace('.', ',')
@@ -136,4 +124,4 @@ Vue.filter('monetize', function (value) {
 App.router = Vue.router
 App.store = Store
 
-const app = new Vue(App).$mount('#app');
+const app = new Vue(App).$mount('#app')

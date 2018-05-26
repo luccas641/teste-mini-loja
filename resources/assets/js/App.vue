@@ -23,6 +23,9 @@
                     <li v-if="$auth.check()" class="pull-right">
                         <a href="#" @click.prevent="$auth.logout()">Sair</a>
                     </li>
+                    <li v-if="$auth.check()" class="pull-right">
+                        <router-link :to="{name: 'customer'}">Minha Conta</router-link >
+                    </li>
                     <li class="pull-right">
                         <router-link :to="{ name: 'cart' }">Carrinho</router-link>
                     </li>
@@ -37,14 +40,27 @@
 
 
 <script>
-
+    import {mapGetters, mapActions} from 'vuex'
     export default {
         data () {
             return {
                 search: ''
             }
         },
+        computed: {
+            ...mapGetters([
+                'cartId'
+            ])
+        },
+        async created () {
+            if(this.cartId == null) {
+                await this.requestCart()
+            }
+        },
         methods: {
+            ...mapActions([
+                'requestCart'
+            ]),
             doSearch() {
                 this.$router.push({
                     name: 'search',
