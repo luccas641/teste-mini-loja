@@ -76,6 +76,7 @@
     </div>
 </template>
 <script>
+    import {mapGetters} from 'vuex'
     export default {
         data() {
             return {
@@ -86,6 +87,9 @@
             this.getResults();
         },
         computed: {
+            ...mapGetters([
+                'cartId'
+            ]),
             total () {
                 if(this.products.length==0) {
                     return "0.00";
@@ -97,12 +101,12 @@
         },
         methods: {
             getResults () {
-                this.axios.get(`cart/1`).then((response) => {
+                this.axios.get(`carts/${this.cartId}`).then((response) => {
                     this.products = response.data.data
                 })
             },
             updateItem (id) {
-                this.axios.put(`cart/1`, {
+                this.axios.put(`carts/${this.cartId}`, {
                     product: this.products[id].id, 
                     quantity: this.products[id].quantity
                 }).then((response) => {

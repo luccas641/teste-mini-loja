@@ -27,7 +27,7 @@ class CartRepositoryRedis implements CartRepositoryInterface
             $pipe = Redis::pipeline();
             $pipe->incr('cartId');
             $pipe->get('cartId');
-            return $pipe->execute();
+            return $pipe->execute()[0];
         } else {
             Redis::set('cartId', 1);
             return 1;
@@ -45,7 +45,8 @@ class CartRepositoryRedis implements CartRepositoryInterface
         $cart = Redis::get($this->getKey($id));
 
         if ($cart === null) {
-            return;
+            Redis::set($this->getKey($id), serialize(new Cart($id)), "ex", 3600);
+            $cart = Redis::get($this->getKey($id));
         }
         
         return (unserialize($cart));

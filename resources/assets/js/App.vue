@@ -40,14 +40,27 @@
 
 
 <script>
-
+    import {mapGetters, mapActions} from 'vuex'
     export default {
         data () {
             return {
                 search: ''
             }
         },
+        computed: {
+            ...mapGetters([
+                'cartId'
+            ])
+        },
+        async created () {
+            if(this.cartId == null) {
+                await this.requestCart()
+            }
+        },
         methods: {
+            ...mapActions([
+                'requestCart'
+            ]),
             doSearch() {
                 this.$router.push({
                     name: 'search',

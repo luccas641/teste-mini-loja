@@ -6,10 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Order;
+use App\Services\OrderService;
 use App\Http\Resources\OrderResource;
 
 class OrderController extends Controller
 {
+    protected $orderService;
+    
+    /**
+    * Loads CartController
+    * 
+    * @param OrderService $cartRepo
+    * @return OrderController
+    */
+    public function __construct(OrderService $orderService)
+    {    
+        $this->middleware('auth:api');
+        $this->orderService = $orderService;
+    }
        /**
      * Return a paginated list of user orders.
      *
@@ -43,12 +57,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = $this->validate($request, [
-            'name' => 'required|max:50',
-            'price' => 'required|numeric|min:0',
-            'description' => 'required'
+            'cart' => 'required|numeric',
+            'shipping' => 'required',
         ]);
 
-        $order = Order::create($order);
+        $order = $this->orderService->create($order);
 
         return new OrderResource($order);
     }

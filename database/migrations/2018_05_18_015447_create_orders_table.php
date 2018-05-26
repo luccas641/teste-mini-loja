@@ -19,8 +19,9 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('suburb');
             $table->string('city');
-            $table->string('phone');
+            $table->string('state');
             $table->string('code');
+            $table->string('phone');            
             $table->unsignedInteger('user_id');
             $table->timestamps();
 
