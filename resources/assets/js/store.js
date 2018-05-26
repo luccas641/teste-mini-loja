@@ -1,3 +1,5 @@
+import Vuex from 'vuex'
+
 const store = new Vuex.Store({
   state: {
     cartId: null,
@@ -29,4 +31,4 @@ const store = new Vuex.Store({
   }
 })
 
-module.exports = store;
+export default store

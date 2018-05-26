@@ -7,22 +7,22 @@ let Toasted = require('vue-toasted').default;
 let VueAxios = require('vue-axios');
 let Vuex = require('vuex');
 
-let App = require('./App.vue');
-let Cart = require('./components/shopping/Cart.vue');
-let Category = require('./components/shopping/Category.vue');
-let Categories = require('./components/shopping/Categories.vue');
-let Confirm = require('./components/purchase/Confirm.vue');
-let Customer = require('./components/user/Customer.vue');
-let Home = require('./components/shopping/Home.vue');
-let Login = require('./components/user/Login.vue');
-let ProductDetail = require('./components/shopping/ProductDetail.vue');
-let Register = require('./components/user/Register.vue');
-let Search = require('./components/shopping/Search.vue');
-let Success = require('./components/purchase/Success.vue');
+let App = require('./App');
+let Cart = require('./components/shopping/Cart');
+let Category = require('./components/shopping/Category');
+let Categories = require('./components/shopping/Categories');
+let Confirm = require('./components/purchase/Confirm');
+let Customer = require('./components/user/Customer');
+let Home = require('./components/shopping/Home');
+let Login = require('./components/user/Login');
+let ProductDetail = require('./components/shopping/ProductDetail');
+let Register = require('./components/user/Register');
+let Search = require('./components/shopping/Search');
+let Success = require('./components/purchase/Success');
+let PurchaseDetails = require('./components/purchase/Details');
 
 let Store = require('./store');
 
-Vue.use(Vuex)
 Vue.use(Toasted)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
@@ -40,9 +40,6 @@ const router = new VueRouter({
             path: '/register',
             name: 'register',
             component: Register,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/login',
@@ -61,51 +58,44 @@ const router = new VueRouter({
             }
         },
         {
+            path: '/purchaseDetail/:id',
+            name: 'purchaseDetail',
+            component: PurchaseDetails,
+            meta: {
+                auth: true
+            }
+        },
+        {
             path: '/cart',
             name: 'cart',
             component: Cart,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/products/:id',
             name: 'productDetail',
             component: ProductDetail,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/categories/:id',
             name: 'category',
             component: Category,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/categories',
             name: 'categories',
             component: Categories,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/search',
             name: 'search',
             component: Search,
-            meta: {
-                auth: false
-            }
         },
         {
             path: '/success',
             name: 'success',
             component: Success,
             meta: {
-                auth: false
+                auth: true
             }
         },
         {
@@ -113,7 +103,7 @@ const router = new VueRouter({
             name: 'confirm',
             component: Confirm,
             meta: {
-                auth: false
+                auth: true
             }
         }
     ]

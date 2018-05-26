@@ -25,6 +25,9 @@ Route::resource('products', 'Api\ProductController')
 Route::resource('specs', 'Api\SpecController')
 ->only(['index', 'show']);
 
+Route::resource('orders', 'Api\OrderController')
+->only(['index', 'show', 'store']);
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
