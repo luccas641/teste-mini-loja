@@ -3,19 +3,26 @@ require('./bootstrap');
 window.Vue = require('vue');
 let VueRouter = require('vue-router').default;
 let axios = require('axios');
-let VueAxios = require('vue-axios');
-let App = require('./App.vue');
-let Customer = require('./components/Customer.vue');
-let Home = require('./components/Home.vue');
-let Register = require('./components/Register.vue');
-let Login = require('./components/Login.vue');
-let ProductDetail = require('./components/ProductDetail.vue');
-let Cart = require('./components/Cart.vue');
-let Category = require('./components/Category.vue');
-let Categories = require('./components/Categories.vue');
-let Search = require('./components/Search.vue');
 let Toasted = require('vue-toasted').default;
+let VueAxios = require('vue-axios');
+let Vuex = require('vuex');
 
+let App = require('./App.vue');
+let Cart = require('./components/shopping/Cart.vue');
+let Category = require('./components/shopping/Category.vue');
+let Categories = require('./components/shopping/Categories.vue');
+let Confirm = require('./components/purchase/Confirm.vue');
+let Customer = require('./components/user/Customer.vue');
+let Home = require('./components/shopping/Home.vue');
+let Login = require('./components/user/Login.vue');
+let ProductDetail = require('./components/shopping/ProductDetail.vue');
+let Register = require('./components/user/Register.vue');
+let Search = require('./components/shopping/Search.vue');
+let Success = require('./components/purchase/Success.vue');
+
+let Store = require('./store');
+
+Vue.use(Vuex)
 Vue.use(Toasted)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
@@ -92,6 +99,22 @@ const router = new VueRouter({
             meta: {
                 auth: false
             }
+        },
+        {
+            path: '/success',
+            name: 'success',
+            component: Success,
+            meta: {
+                auth: false
+            }
+        },
+        {
+            path: '/confirm',
+            name: 'confirm',
+            component: Confirm,
+            meta: {
+                auth: false
+            }
         }
     ]
 });
@@ -111,5 +134,6 @@ Vue.filter('monetize', function (value) {
   })
   
 App.router = Vue.router
+App.store = Store
 
 const app = new Vue(App).$mount('#app');

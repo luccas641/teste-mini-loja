@@ -25,6 +25,19 @@ class CartService
     * @param int $cartId
     * @return string
     */
+    public function request($cartId)
+    {
+        $cart = $this->cartRepo->request();
+
+        return $cart;
+    }
+
+    /**
+    * Method to get cart based either on name or ID
+    * 
+    * @param int $cartId
+    * @return string
+    */
     public function get($cartId)
     {
         $cart = $this->cartRepo->findById($cartId);

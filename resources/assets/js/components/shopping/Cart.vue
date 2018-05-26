@@ -64,10 +64,10 @@
                             </router-link>
                         </td>
                         <td>
-                            <button @click="checkout" type="button" class="btn btn-success">
+                            <router-link :to="{name: 'confirm'}" type="button" class="btn btn-success">
                                 Finalizar
                                 <span class="glyphicon glyphicon-play"></span>
-                            </button>
+                            </router-link>
                         </td>
                     </tr>
                 </tbody>

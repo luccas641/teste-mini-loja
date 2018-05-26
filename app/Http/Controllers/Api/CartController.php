@@ -27,11 +27,25 @@ class CartController extends Controller
         $this->cartService = $cartService;
     }
        /**
-     * Return a list of items in the cart.
+     * Request a cart
      * 
      * @param int $id
-     * @return CartResource
+
      */
+    public function index($id)
+    { 
+        return [
+            "status" => "success",
+            "cartId" => $this->cartService->request()
+        ];
+    }
+
+    /**
+  * Return a list of items in the cart.
+  * 
+  * @param int $id
+  * @return array
+  */
     public function show($id)
     { 
         return [

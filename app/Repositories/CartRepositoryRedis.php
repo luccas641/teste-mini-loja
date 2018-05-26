@@ -17,7 +17,22 @@ class CartRepositoryRedis implements CartRepositoryInterface
     {
         Redis::set($this->getKey($id), serialize($cart), "ex", 3600);
     }
-
+    /**
+     * Request a cartId
+     *
+     * @return int
+     */
+    public function request() {
+        if(Redis::exists("cartId")) {
+            $pipe = Redis::pipeline();
+            $pipe->incr('cartId');
+            $pipe->get('cartId');
+            return $pipe->execute();
+        } else {
+            Redis::set('cartId', 1);
+            return 1;
+        }
+    }
     /**
      * Find cart by id.
      *
