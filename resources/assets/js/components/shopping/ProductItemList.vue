@@ -4,15 +4,15 @@
             <img :src="product.image" class="img-responsive">
             <div class="caption">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6 price">
+                    <div class="col-md-12 price">
                         <h3 style="margin:5px auto;"><label>{{product.price | monetize}}</label></h3>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <a @click.stop="addToCart(product.id)" href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
                     </div>
                 </div>
 
                 <p>{{product.name}}</p>
+                    
+                <a @click.stop="addToCart(product.id)" href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
+                    
             </div>
         </div>
     </router-link>
