@@ -56,10 +56,14 @@
             if(this.cartId == null) {
                 await this.requestCart()
             }
+            await this.getCategories()
+            await this.getSpecs()
         },
         methods: {
             ...mapActions([
-                'requestCart'
+                'requestCart',
+                'getCategories',
+                'getSpecs'
             ]),
             doSearch() {
                 this.$router.push({

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Jobs\IndexProduct;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +19,8 @@ Route::resource('carts', 'Api\CartController')
 Route::resource('categories', 'Api\CategoryController')
     ->only(['index', 'show']);
 
+Route::get('products/search/{q}', 'Api\ProductController@search');
+
 Route::resource('products', 'Api\ProductController')
     ->only(['index', 'show']);
 
@@ -30,6 +32,10 @@ Route::group([
 ], function ($router) {
     Route::resource('orders', 'Api\OrderController')
     ->only(['index', 'show', 'store']);
+});
+
+Route::get('index', function() {
+    IndexProduct::dispatch(3);
 });
 
 Route::group([

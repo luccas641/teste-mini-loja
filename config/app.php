@@ -162,6 +162,8 @@ return [
         App\Providers\CartServiceServiceProvider::class,
         App\Providers\CartRepositoryServiceProvider::class,
         App\Providers\OrderServiceServiceProvider::class,
+        Cviebrock\LaravelElasticsearch\ServiceProvider::class
+
 
     ],
 
@@ -214,6 +216,7 @@ return [
         
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
+        'Elasticsearch' => Cviebrock\LaravelElasticsearch\Facade::class,
     ],
 
 ];

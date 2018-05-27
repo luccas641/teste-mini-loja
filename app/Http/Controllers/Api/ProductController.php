@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Http\Resources\ProductResource;
 
+use Elasticsearch;
+
 class ProductController extends Controller
 {
        /**
@@ -20,6 +22,71 @@ class ProductController extends Controller
         $products = Product::latest()->withCount('categories')
             ->paginate(20);
 
+        return ProductResource::collection($products);
+    }
+
+    public function search($q, Request $request)
+    {
+        $mustFilters = [];
+        $shouldFilters = [];
+        $priceMin = 0;
+        $priceMax = 99999;
+
+        if($request->input('priceMax') > 0){
+           $priceMax = floatVal($request->input('priceMax'));
+        }
+        if($request->input('priceMin') > 0){
+            $priceMin = floatVal($request->input('priceMin'));
+         }
+        array_push($mustFilters,[
+            "range" => [
+            "price" => [
+                "gte" => $priceMin,
+                "lte" => $priceMax
+            ]
+        ]]);
+        $categories = json_decode($request->input('categories'), true);
+        if(count($categories)>0) {
+            foreach($categories as $category) {
+                array_push($shouldFilters, 
+                [
+                    "term" => [
+                        "categories.id" => $category
+                    ]
+                ]);
+
+            }
+        }
+        $esProducts = Elasticsearch::search([
+            'index' => 'shopping',
+            'type' => 'product',
+            'body' => [
+                "_source" => ["id"],
+                "size" => 20,
+                "query" => [
+                    "bool" => [
+                        "must" => [
+                            "query_string" => [
+                                "query" => "*{$q}*",
+                                "fields" => ["categories.name", "description", "name", "specs.name", "specs.pivot.value"]
+                            ]
+                        ],
+                        "filter" => [
+                            "bool" => [
+                                "must" => $mustFilters,
+                                "should" => $shouldFilters
+                            ]
+                        ]
+                    ]
+                ]   
+            ]
+        ]);
+        $ids = array_map(function($item) {
+            return $item['_source']['id'];
+        }, $esProducts['hits']['hits']);
+
+        $products = Product::withCount('categories')->findMany($ids);
+        
         return ProductResource::collection($products);
     }
 

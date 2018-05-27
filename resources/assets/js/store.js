@@ -8,6 +8,8 @@ const store = new Vuex.Store({
   state: {
     cartId: null,
     user: null,
+    categories: [],
+    specs: []
   },
   mutations: {
     setUser (store, user) {
@@ -16,6 +18,12 @@ const store = new Vuex.Store({
     setCart (store, cartId) {
         store.cartId = cartId
     },
+    setCategories (store, categories) {
+      store.categories = categories
+    },
+    setSpecs (store, specs) {
+      store.specs = specs
+    }
   },
   actions: {
     requestCart ({commit}) {
@@ -28,12 +36,24 @@ const store = new Vuex.Store({
     },
     setUser ({ commit}, user) {
         commit('setUser', user)
+    },
+    getCategories ({commit}) {
+      return Vue.axios.get(`categories`).then((response) => {
+          commit('setCategories', response.data)
+      })
+    },
+    getSpecs ({commit}) {
+      return Vue.axios.get(`specs`).then((response) => {
+          commit('setSpecs', response.data)
+      })
     }
   },
   getters: {
     cartId: store => store.cartId,
     user: store => store.user,
-    isLogged: store => store.user !== null
+    isLogged: store => store.user !== null,
+    categories: store => store.categories,
+    specs: store => store.specs
   }
 })
 
