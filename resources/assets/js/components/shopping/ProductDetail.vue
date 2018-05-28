@@ -2,7 +2,7 @@
     <div v-if="product">
         <div class="row">
             <div class="col-xs-12">
-            <router-link v-for="category in product.categories" :to="{name: 'category', params: {id: category.id}}" :key="category.id">{{category.name}}</router-link>
+            <router-link v-for="category in product.categories" :to="{name: 'category', params: {id: category.id}}" :key="category.id">| {{category.name}} |</router-link>
             </div>
         </div>
         <div class="row">

@@ -54731,7 +54731,7 @@ var render = function() {
                     to: { name: "category", params: { id: category.id } }
                   }
                 },
-                [_vm._v(_vm._s(category.name))]
+                [_vm._v("| " + _vm._s(category.name) + " |")]
               )
             })
           )

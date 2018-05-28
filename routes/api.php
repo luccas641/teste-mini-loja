@@ -36,6 +36,7 @@ Route::group([
 
 Route::get('index', function() {
     IndexProduct::dispatch(3);
+    return "done";
 });
 
 Route::group([
