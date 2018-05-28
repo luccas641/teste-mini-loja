@@ -20,7 +20,7 @@ Docker para facilitar o desenvolvimento e execução do exemplo. Os arquivos do 
 Testado no Ubuntu 18.04 e docker 18.03
 
 0. sudo sysctl -w vm.max_map_count=262144    (foi necessário para exectar o elasticsearch)
-1. git clone git@github.com:luccas641/teste-mini-loja.git projetoLuccas
+1. git clone https://github.com/luccas641/teste-mini-loja.git projetoLuccas
 2. cd projetoLuccas/docker
 3. docker-compose build
 4. docker-compose up nginx mysql redis elasticsearch workspace

@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new IndexProduct)->everyMinute();
+        $schedule->job(new IndexProduct(1))->everyMinute();
     }
 
     /**
