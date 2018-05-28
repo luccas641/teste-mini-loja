@@ -27,12 +27,19 @@ Testado no Ubuntu 18.04 e docker 18.03
 5. docker exec -it docker_workspace_1 composer install
 6. aguardar o elasticsearch terminar de carregar.
 7. acessar http://localhost/api/index     (essa chamada irá forçar a indexação do elasticsearch)
-8. acessar http://localhost
+8. acessar http://localhost               (Precisa ser localhost. Está hardcoded no frontend. É possivel alterar e recompilar o frontend)
 
 O BD inicial deve ser carregado automaticamente pelo docker do Mysql, mas caso tenha algum problema, o SQL se encontra em docker/mysql/docker-entrypoint-initdb.d/createdb.sql
 
 ## Containers extras:
 O phpmyadmin e o kibana também estão disponíveis no docker-compose caso necessário.
+
+## Frontend
+O frontend em VueJs já está compilado no repositorio. Mas caso faça alguma alteração e percise recompilar:
+
+docker exec -it docker_workspace_1 bash   
+npm install
+npm run dev
 
 ### Usuário cadastrado:
 email: luccas641@gmail.com
