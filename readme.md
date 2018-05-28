@@ -37,9 +37,9 @@ O phpmyadmin e o kibana também estão disponíveis no docker-compose caso neces
 ## Frontend
 O frontend em VueJs já está compilado no repositorio. Mas caso faça alguma alteração e percise recompilar:
 
-docker exec -it docker_workspace_1 bash   
-npm install
-npm run dev
+1. docker exec -it docker_workspace_1 bash   
+2. npm install
+3. npm run dev
 
 ### Usuário cadastrado:
 email: luccas641@gmail.com
