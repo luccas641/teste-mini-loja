@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <p>{{product.name}}</p>
+                <p class="prodname">{{product.name}}</p>
                     
                 <a @click.stop="addToCart(product.id)" href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>
                     
@@ -38,3 +38,13 @@
         }
     }
 </script>
+
+<style>
+.prodname{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+
+}
+</style>

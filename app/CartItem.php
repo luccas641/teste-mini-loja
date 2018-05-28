@@ -18,6 +18,12 @@ class CartItem implements Arrayable
      */
     public $name;
     /**
+     * The image of the cart item.
+     *
+     * @var float
+     */
+    public $image;
+    /**
      * The price of the cart item.
      *
      * @var float
@@ -38,10 +44,11 @@ class CartItem implements Arrayable
      * @param int        $quantity
      *
      */
-    public function __construct($id, $name, $price, $quantity)
+    public function __construct($id, $name, $image, $price, $quantity)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->image = $image;
         $this->price = (float) $price;
         $this->quantity = (int) $quantity;
     }
@@ -59,6 +66,7 @@ class CartItem implements Arrayable
         return new self(
             $attributes['id'],
             $attributes['name'],
+            $attributes['image'],
             $attributes['price'],
             $attributes['quantity']
         );
@@ -85,6 +93,7 @@ class CartItem implements Arrayable
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'image' => $this->image,
             'price' => $this->price,
             'quantity' => $this->quantity,
         ];

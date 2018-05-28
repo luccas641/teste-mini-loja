@@ -44,13 +44,10 @@
                     <tr>
                         <td>   </td>
                         <td>   </td>
-                        <td>   </td>
-                        <td class="text-right">
-                            <h3>Total</h3>
-                        </td>
-                        <td class="text-right">
+                        <td> </td>
+                        <td class="text-right" colspan="2">
                             <h3>
-                                <strong>{{this.total | monetize}}</strong>
+                                Total: <strong>{{this.total | monetize}}</strong>
                             </h3>
                         </td>
                     </tr>
@@ -114,7 +111,8 @@
                 })
             },
             removeItem (id) {
-                this.updateItem(id, 0)
+                this.products[id].quantity = 0
+                this.updateItem(id)
             },
             checkout () {
 

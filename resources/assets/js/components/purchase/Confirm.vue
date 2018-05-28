@@ -34,6 +34,11 @@
                 <input type="input" id="state" class="form-control" v-model="shipping.state" required>
                 <span class="help-block" v-if="error && errors.state">{{ errors.state }}</span>
             </div>
+            <div class="form-group" v-bind:class="{ 'has-error': error && errors.phone }">
+                <label for="phone">Telefone para contato</label>
+                <input type="input" id="phone" class="form-control" v-model="shipping.phone" required>
+                <span class="help-block" v-if="error && errors.phone">{{ errors.phone }}</span>
+            </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>

@@ -42,9 +42,6 @@
                     <tr v-for="(product) in order.products" :key="product.id">
                         <td class="col-sm-9 col-md-9">
                             <div class="media">
-                                <router-link :to="{name: 'productDetail', params: {id: product.id}}" class="thumbnail pull-left">
-                                    <img class="media-object" :src="product.image">
-                                </router-link>
                                 <div class="media-body">
                                     <h4 class="media-heading">
                                         <router-link :to="{name: 'productDetail', params: {id: product.id}}"> {{product.name}}</router-link>
@@ -65,13 +62,9 @@
                     <tr>
                         <td>   </td>
                         <td>   </td>
-                        <td>   </td>
-                        <td class="text-right">
-                            <h3>Total</h3>
-                        </td>
-                        <td class="text-right">
+                        <td class="text-right" colspan="3">
                             <h3>
-                                <strong>{{this.total | monetize}}</strong>
+                             Total   <strong>{{this.total | monetize}}</strong>
                             </h3>
                         </td>
                     </tr>

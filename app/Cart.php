@@ -43,8 +43,8 @@ class Cart implements Arrayable
     * @param float $price
     * @param int $quantity 
     */
-    public function add ($id, $name, $price, $quantity) {
-        $cartItem = new CartItem($id, $name, $price, $quantity);
+    public function add ($id, $name, $image, $price, $quantity) {
+        $cartItem = new CartItem($id, $name, $image, $price, $quantity);
         /*if ($this->content->has($id)) {
             $cartItem->quantity += $this->content->get($id)->quantity;
         }*/
